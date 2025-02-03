@@ -23,3 +23,16 @@ Make sure you have the following installed:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/Synapz.git
+
+2. Open the project in your IDE (e.g., IntelliJ IDEA).
+   
+3. Run the Server.java file to start the server.
+   
+4. Run the Client.java file to connect to the server.
+
+### Usage
+- The server will wait for a client to connect and then print out the client's message.
+- The client sends a message and receives a response from the server.
+
+### License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
