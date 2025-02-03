@@ -1,30 +1,38 @@
 package com.synapz;
 
 import java.io.*;
-import java.net.Socket;
-import java.util.Scanner;
+import java.net.*;
 
 public class Client {
     public static void main(String[] args) {
-        String host = "localhost";
-        int port = 5001;
-
-        try (Socket socket = new Socket(host, port);
-             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+        try (Socket socket = new Socket("localhost", 5001);
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             Scanner userInput = new Scanner(System.in)) {
+             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in))) {
 
-            System.out.println("Connected to the server. Type a message:");
+            System.out.print("Enter your username: ");
+            String username = consoleInput.readLine();
+            out.println(username);
 
-            // Reading input from user and sending it to server
-            String message = userInput.nextLine();
-            out.println(message);
+            // Starte einen Thread für eingehende Nachrichten
+            Thread listener = new Thread(() -> {
+                try {
+                    String serverMessage;
+                    while ((serverMessage = in.readLine()) != null) {
+                        System.out.println(serverMessage);
+                    }
+                } catch (IOException e) {
+                    System.out.println("Connection closed.");
+                }
+            });
+            listener.start();
 
-            // Reading and displaying server response
-            String response = in.readLine();
-            System.out.println("Server response: " + response);
+            // Nachrichten senden
+            String userInput;
+            while ((userInput = consoleInput.readLine()) != null) {
+                out.println(userInput);
+            }
 
-            System.out.println("Message sent to the server: " + message);
         } catch (IOException e) {
             e.printStackTrace();
         }
