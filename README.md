@@ -1,38 +1,68 @@
-# Synapz
+# Synapz - Peer-to-Peer Chat Application
 
-Synapz is a peer-to-peer messaging application built in Java. The project is designed to allow communication between a server and multiple clients using basic socket programming. 
+Synapz is a peer-to-peer chat application allowing users to join chatrooms, send messages, and manage their online status (online, busy, offline).
 
 ## Features
 
-- Simple communication between a server and a client.
-- Bidirectional message exchange (client sends a message to the server, and the server replies).
-- Can be extended for more advanced features like user authentication, encryption, and multi-client handling.
+- **User Authentication:** Users are prompted to enter a username when connecting to the server.
+- **Chatrooms:** Users can join chatrooms, send messages, and communicate with other users in real-time.
+- **User Status:** Users can set their status as `online`, `busy`, or `offline`. This status is visible to other users in the chatroom.
+- **Chatroom Management:** Users can see a list of members currently in the chatroom, and join/leave chatrooms.
 
 ## Getting Started
 
-To get started with the project, follow these steps:
-
 ### Prerequisites
 
-Make sure you have the following installed:
-- **Java 17+** (or any JDK that supports sockets)
-- **IntelliJ IDEA** or another Java IDE of your choice
+To run Synapz on your local machine, you need:
 
-### Setting Up
+- Java 11 or later installed on your machine.
+- A terminal or command line interface to run the program.
+
+### Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/Synapz.git
+   git clone https://github.com/Sharkofwitch/Synapz.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Synapz
+   ```
 
-2. Open the project in your IDE (e.g., IntelliJ IDEA).
-   
-3. Run the Server.java file to start the server.
-   
-4. Run the Client.java file to connect to the server.
+3. Compile and run the server:
+   ```bash
+   javac Server.java
+   java Server
+   ```
 
-### Usage
-- The server will wait for a client to connect and then print out the client's message.
-- The client sends a message and receives a response from the server.
+4. To run the client, use:
+   ```bash
+   java Client
+   ```
 
-### License
+### How to Use
+
+1. **Enter your username** when prompted.
+2. **Join a chatroom** by typing `/join <chatroom_name>`.
+3. **Send messages** to the chatroom by typing any text and pressing Enter.
+4. **Change your status** by typing `/status <status>` (available statuses: `online`, `busy`, `offline`).
+5. **See members** in your chatroom by typing `/members`.
+6. **Leave a chatroom** by typing `/leave`.
+
+### Example Commands
+
+- `/join Gaming` - Join the "Gaming" chatroom.
+- `/status busy` - Set your status to "busy".
+- `/members` - See all members currently in the chatroom.
+- `/leave` - Leave the current chatroom.
+
+## Release Notes
+
+### Version 0.2 - User Status Management
+- Added feature to set and display user statuses (`online`, `busy`, `offline`).
+- Status updates are visible to all members of the chatroom when a user changes their status.
+- Improved chatroom member list display with user statuses.
+
+## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
